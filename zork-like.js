@@ -4,7 +4,7 @@
 const text = document.querySelector('h1');
 const startButton = document.querySelector('button');
 const startScreen = document.querySelector('#start-screen');
-const gameText = document.querySelector('#game-text');
+const gameText = document.querySelector('.game-text');
 const start = [0,0];
 
 // Functions --------------------------------------------

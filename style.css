@@ -52,7 +52,7 @@ button:hover {
     transition-duration: 1.5s;
 }
 
-#game-text-div {
+.game-text {
     transition-duration: 1.5s;
     display: none;
     opacity: 0;
