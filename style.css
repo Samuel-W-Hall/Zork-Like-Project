@@ -64,6 +64,7 @@ button:hover {
 
 .hint-text {
   color: rgb(254, 254, 114);
+  white-space: pre;
 }
 
 .playerInput {
@@ -78,4 +79,10 @@ button:hover {
   color: white;
   width: 75vw;
   padding: 50px 12vw;
+}
+
+.added {
+  padding: 20px;
+  color: grey;
+  font-size: 20px;
 }

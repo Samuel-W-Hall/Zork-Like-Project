@@ -18,9 +18,19 @@ const inputTester = function(input, verbs, objirections) {
     if (verbs.includes(splitInput[0])) {
         if (objirections.includes(splitInput[1])) {
             console.log('You\'re up!');
-        } else console.log(`"${splitInput[1]}" is not a valid direction or object, please try again`);
+        } else addInstruction(splitInput);
     } else console.log(`Cannot recognise "${input}", please type a verb followed by a direction`);
+};
+
+// added instruction text
+const addInstruction = function(userInputArr) {
+    const newDiv = document.createElement('div');
+    newDiv.classList.add('added');
+    const addedText = document.createTextNode(`\n "${userInputArr[1]}" is not a valid direction or object, please try again`);
+    newDiv.appendChild(addedText)
+    gameText.insertAdjacentElement("beforeend", newDiv);
 }
+
 
 
 // GAME MAP/GRID
