@@ -7,28 +7,48 @@ const startScreen = document.querySelector('#start-screen');
 const gameText = document.querySelector('.game-text');
 const gameTextPlain = document.querySelector('.plain-text')
 const hintElement = document.querySelector('.hint-text');
-const start = [0,0];
+const start = [0, 0];
 let currentLocation = start;
 let Playerinput = document.querySelector('.playerInput');
+let pockets = [];
 
 // Functions --------------------------------------------
 
-const inputTester = function(input, verbs, objirections) {
+const inputTester = function(input, [verbs, objirections], direction) {
     const splitInput = String(input).toLowerCase().split(" ");
     if (verbs.includes(splitInput[0])) {
         if (objirections.includes(splitInput[1])) {
-            console.log('You\'re up!');
-        } else addInstruction(splitInput);
-    } else console.log(`Cannot recognise "${input}", please type a verb followed by a direction`);
+            // get up
+            gameText.style.opacity = 0;
+            currentLocation[1] =+ 1;
+            setTimeout(function() {
+                // remove all added instructions
+                document.querySelectorAll('.added').forEach((el) => el.remove())
+                setGameText();
+                addTransitionText();
+                gameText.style.opacity = 100;
+            }, 1500)
+        } else addInstruction(`\n "${splitInput[1]}" is not a valid direction or object, please try again`);
+    } else addInstruction(`Cannot recognise "${input}", please type a verb followed by a direction or object`);
 };
 
 // added instruction text
-const addInstruction = function(userInputArr) {
+const addInstruction = function(instruction) {
     const newDiv = document.createElement('div');
+    newDiv.classList.add('instruction');
     newDiv.classList.add('added');
-    const addedText = document.createTextNode(`\n "${userInputArr[1]}" is not a valid direction or object, please try again`);
+    const addedText = document.createTextNode(instruction);
     newDiv.appendChild(addedText)
     gameText.insertAdjacentElement("beforeend", newDiv);
+}
+
+const addTransitionText = function() {
+    const newDiv = document.createElement('div');
+    newDiv.classList.add('transition');
+    newDiv.classList.add('added');
+    const addedText = document.createTextNode(allGameTextMap.get(String(currentLocation))['transitionText']);
+    newDiv.appendChild(addedText);
+    gameText.insertAdjacentElement("afterbegin", newDiv);
 }
 
 
@@ -59,7 +79,7 @@ const mapArr = xCoords.flatMap(function(x) {
 // console.log(mapArr);
 
 
-const allGameText = [{plainText: '1', hint: ''}, {plainText: '2', hint: ''}, {plainText: '3', hint: ''}, {plainText: '4', hint: ''}, {plainText: '5', hint: ''}, {plainText: '6', hint: ''}, {plainText: '7', hint: ''}, {plainText: '8', hint: ''}, {plainText: '9', hint: ''}, {plainText: '10', hint: ''}, {plainText: '11', hint: ''}, {plainText: '12', hint: ''}, {plainText: `You wake up in an empty office. You are lying on a long conference table. You feel weak. But you `, hint: 'tell yourself to get up.'}, {plainText: '13', hint: ''}, {plainText: '14', hint: ''}, {plainText: '15', hint: ''}, {plainText: '16', hint: ''}, {plainText: '17', hint: ''}, {plainText: '18', hint: ''}, {plainText: '19', hint: ''}, {plainText: '20', hint: ''}, {plainText: '21', hint: ''}, {plainText: '22', hint: ''}, {plainText: '23', hint: ''}, {plainText: '24', hint: ''}, {plainText: '25', hint: ''}];
+const allGameText = [{plainText: '1', hint: '', transitionText: '', answer: [], direction: ''}, {plainText: '2', hint: '', transitionText: '', answer: [], direction: ''}, {plainText: '3', hint: '', transitionText: '', answer: [], direction: ''}, {plainText: '4', hint: '', transitionText: '', answer: [], direction: ''}, {plainText: '5', hint: '', transitionText: '', answer: [], direction: ''}, {plainText: '6', hint: '', transitionText: '', answer: [], direction: ''}, {plainText: '7', hint: '', transitionText: '', answer: [], direction: ''}, {plainText: '8', hint: '', transitionText: '', answer: [], direction: ''}, {plainText: '9', hint: '', transitionText: '', answer: [], direction: ''}, {plainText: '10', hint: '', transitionText: '', answer: [], direction: ''}, {plainText: '11', hint: '', transitionText: '', answer: [], direction: ''}, {plainText: '12', hint: '', transitionText: '', answer: [], direction: ''}, {plainText: `You wake up in an empty office. You are lying on a long conference table. You feel weak. But you `, hint: 'tell yourself to get up.', transitionText: '', answer: ['get', 'up'], direction: ''}, {plainText: 'The only thing in here besides the table and chairs is a painting of [INSERT TEXT HERE]. To your right there is a reinforced metal door with a keycard lock. Instinctively you ', hint: 'check your pockets...', transitionText: 'You drag yourself off the table and look around you', answer: ['check', 'pockets'], direction: ''}, {plainText: '14', hint: '', transitionText: '', answer: [], direction: ''}, {plainText: '15', hint: '', transitionText: '', answer: [], direction: ''}, {plainText: '16', hint: '', transitionText: '', answer: [], direction: ''}, {plainText: '17', hint: '', transitionText: '', answer: [], direction: ''}, {plainText: '18', hint: '', transitionText: '', answer: [], direction: ''}, {plainText: '19', hint: '', transitionText: '', answer: [], direction: ''}, {plainText: '20', hint: '', transitionText: '', answer: [], direction: ''}, {plainText: '21', hint: '', transitionText: '', answer: [], direction: ''}, {plainText: '22', hint: '', transitionText: '', answer: [], direction: ''}, {plainText: '23', hint: '', transitionText: '', answer: [], direction: ''}, {plainText: '24', hint: '', transitionText: '', answer: [], direction: ''}, {plainText: '25', hint: '', transitionText: '', answer: [], direction: ''}];
 
 
 const allGameTextMap = new Map(mapArr.map((coords, index) => [String(coords), allGameText[index]]));
@@ -80,12 +100,18 @@ const defaultTitle = function(e) {
     text.style.letterSpacing = 'normal'
 };
 
+const find = (property) => allGameTextMap.get(String(currentLocation))[property];
+
+const setGameText = function() {
+    gameTextPlain.textContent = find('plainText');
+    hintElement.textContent = find('hint');
+}
 
 // hide title screen & show game intro text
 const beginning = function(e) {
     startScreen.style.opacity = '0%';
-    gameTextPlain.textContent = allGameTextMap.get(String(currentLocation))['plainText'];
-    hintElement.textContent = allGameTextMap.get(String(currentLocation))['hint'];
+    // Set gametext
+    setGameText();
     // console.log(hintElement.textContent);
     setTimeout(function() { 
         startScreen.style.display = 'none';
@@ -97,6 +123,7 @@ const beginning = function(e) {
         }, 1500);
     }, 1500); // wait until transition is complete
 };
+
 
 
 // Event Listeners ---------------------------------------
@@ -116,7 +143,7 @@ document.addEventListener('keypress', (e) => {
     if (name === "Enter") {
         e.preventDefault();
         currentInput = Playerinput.value;
-        inputTester(currentInput, ['get'], ['up']);
+        inputTester(currentInput, find('answer'), find('direction'));
         Playerinput.value = ""; // clear input field
     }
 })
