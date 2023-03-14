@@ -8,7 +8,6 @@ body {
   }
 
 h1 {
-    font-family: sans-serif;
     font-size: 70px;
     text-align: center;
     color: white;
@@ -19,11 +18,10 @@ h1 {
   }
 
 h2 {
-    font-family: sans-serif;
     font-size: 25px;
     text-align: center;
     color: white;
-    padding-top: 25px;
+    padding: 25px 100px;
     font-family: 'Source Code Pro', monospace;
   }
 
@@ -54,6 +52,27 @@ button:hover {
 
 .game-text {
     transition-duration: 1.5s;
-    display: none;
+    display: none;  
     opacity: 0;
+}
+
+.plain-text {
+  color: white;
+}
+
+.hint-text {
+  color: rgb(254, 254, 114);
+}
+
+.playerInput {
+  font-size: 20px;
+  font-family: 'Source Code Pro', monospace;
+  display: none;
+  outline: none;
+  border: none;
+  background-color: black;
+  color: white;
+  padding: 100px 20vw;
+  overflow: visible;
+  width: 75vw;
 }
