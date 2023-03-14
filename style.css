@@ -52,10 +52,8 @@ button:hover {
     transition-duration: 1.5s;
 }
 
-#game-text {
+#game-text-div {
     transition-duration: 1.5s;
     display: none;
     opacity: 0;
 }
-
-
