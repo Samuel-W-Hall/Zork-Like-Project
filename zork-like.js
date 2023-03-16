@@ -240,7 +240,7 @@ const checkPockets = function() {
         }
     pocketsMsg += `${pockets[-1]}`;
     }
-    return pocketsMsg;
+    console.log(pocketsMsg);
 };
 
 
