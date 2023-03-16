@@ -37,8 +37,6 @@ directionMap.set('w', [0, -1]);
 
 console.log(directionMap);
 
-console.log('North'.slice(0,1));
-
 // BIG Array of ALL locations
 
 // direction: [0, 1] = East, [0, -1] = West, [1, 1] = North, [1, -1] = South 
@@ -293,6 +291,8 @@ const checkPockets = function() {
 
 
 // Big LOGIC -------------------------------------------------------
+
+// NEEDS REFACTORING
 
 const inputTester = function(input, [verbs, objirections], directions) {
     const splitInput = String(input).toLowerCase().split(" ");
