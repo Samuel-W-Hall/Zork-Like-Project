@@ -52,9 +52,13 @@ button:hover {
     transition-duration: 1.5s;
 }
 
+.text {
+  margin-top: 20vh;
+  transition-duration: 1.5s;
+}
+
 .game-text {
-    margin-top: 20vh;
-    transition-duration: 1.5s;
+    transition-duration: inherit;
     display: none;  
     opacity: 0;
 }
@@ -89,7 +93,10 @@ button:hover {
 }
 
 .transition {
-  padding-bottom: 20px;
   color: rgb(255, 255, 255);
   font-size: 30px;
+  display: none;  
+  opacity: 0;
+  transition-duration: inherit;
 }
+
