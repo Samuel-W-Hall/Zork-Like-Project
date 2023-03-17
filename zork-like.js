@@ -53,7 +53,8 @@ const allGameText = [{
     findableObjects: [],
     directions: [],
     requirements: [],
-    beenHere: []
+    beenHere: [],
+    gatewayFns: []
 },
     {
     plainText: '2',
@@ -63,7 +64,8 @@ const allGameText = [{
     findableObjects: [],
     directions: [],
     requirements: [],
-    beenHere: []
+    beenHere: [],
+    gatewayFns: []
 },
  {
     plainText: '3',
@@ -73,7 +75,8 @@ const allGameText = [{
     findableObjects: [],
     directions: [],
     requirements: [],
-    beenHere: []
+    beenHere: [],
+    gatewayFns: []
 },
  {
     plainText: '4',
@@ -83,7 +86,8 @@ const allGameText = [{
     findableObjects: [],
     directions: [],
     requirements: [],
-    beenHere: []
+    beenHere: [],
+    gatewayFns: []
 },
  {
     plainText: '5',
@@ -93,7 +97,8 @@ const allGameText = [{
     findableObjects: [],
     directions: [],
     requirements: [],
-    beenHere: []
+    beenHere: [],
+    gatewayFns: []
 },
  {
     plainText: '6',
@@ -103,7 +108,8 @@ const allGameText = [{
     findableObjects: [],
     directions: [],
     requirements: [],
-    beenHere: []
+    beenHere: [],
+    gatewayFns: []
 },
  {
     plainText: '7',
@@ -113,7 +119,8 @@ const allGameText = [{
     findableObjects: [],
     directions: [],
     requirements: [],
-    beenHere: []
+    beenHere: [],
+    gatewayFns: []
 },
  {
     plainText: '8',
@@ -123,7 +130,8 @@ const allGameText = [{
     findableObjects: [],
     directions: [],
     requirements: [],
-    beenHere: []
+    beenHere: [],
+    gatewayFns: []
 },
  {
     plainText: '9',
@@ -133,7 +141,8 @@ const allGameText = [{
     findableObjects: [],
     directions: [],
     requirements: [],
-    beenHere: []
+    beenHere: [],
+    gatewayFns: []
 },
  {
     plainText: '10',
@@ -143,7 +152,8 @@ const allGameText = [{
     findableObjects: [],
     directions: [],
     requirements: [],
-    beenHere: []
+    beenHere: [],
+    gatewayFns: []
 },
  {
     plainText: '11',
@@ -153,7 +163,8 @@ const allGameText = [{
     findableObjects: [],
     directions: [],
     requirements: [],
-    beenHere: []
+    beenHere: [],
+    gatewayFns: []
 },
  {
     plainText: '12',
@@ -163,7 +174,8 @@ const allGameText = [{
     findableObjects: [],
     directions: [],
     requirements: [],
-    beenHere: []
+    beenHere: [],
+    gatewayFns: []
 },
  {
     plainText: `You wake up in an empty office. You are lying on a long conference table. You feel weak. But you `,
@@ -173,7 +185,8 @@ const allGameText = [{
     findableObjects: [],
     directions: [[1, 1]],
     requirements: [],
-    beenHere: []
+    beenHere: [],
+    gatewayFns: []
 },
  {
     plainText: 'The only thing in here besides the table and chairs is a painting of [INSERT TEXT HERE]. To your right there is a reinforced metal door with a keycard lock. Instinctively you ',
@@ -183,7 +196,10 @@ const allGameText = [{
     findableObjects: [],
     directions: [[0, 1]],
     requirements: ['keycard', 'card'],
-    beenHere: []
+    beenHere: [],
+    gatewayFns: [function() {
+        addInstruction('---gateway passed---');
+    }]
 },
  {
     plainText: '',
@@ -193,7 +209,8 @@ const allGameText = [{
     findableObjects: [],
     directions: [],
     requirements: [],
-    beenHere: []
+    beenHere: [],
+    gatewayFns: []
 },
  {
     plainText: '15',
@@ -203,7 +220,8 @@ const allGameText = [{
     findableObjects: [],
     directions: [],
     requirements: [],
-    beenHere: []
+    beenHere: [],
+    gatewayFns: []
 },
  {
     plainText: '16',
@@ -213,7 +231,8 @@ const allGameText = [{
     findableObjects: [],
     directions: [],
     requirements: [],
-    beenHere: []
+    beenHere: [],
+    gatewayFns: []
 },
  {
     plainText: '17',
@@ -223,7 +242,8 @@ const allGameText = [{
     findableObjects: [],
     directions: [],
     requirements: [],
-    beenHere: []
+    beenHere: [],
+    gatewayFns: []
 },
  {
     plainText: 'You find youself in a long corridor. You can go ',
@@ -233,7 +253,8 @@ const allGameText = [{
     findableObjects: [],
     directions: [[1, 1], [1, -1]],
     requirements: [],
-    beenHere: []
+    beenHere: [],
+    gatewayFns: []
 },
  {
     plainText: '19',
@@ -243,7 +264,8 @@ const allGameText = [{
     findableObjects: [],
     directions: [[1, -1]],
     requirements: [],
-    beenHere: []
+    beenHere: [],
+    gatewayFns: []
 },
  {
     plainText: '20',
@@ -253,7 +275,8 @@ const allGameText = [{
     findableObjects: [],
     directions: [],
     requirements: [],
-    beenHere: []
+    beenHere: [],
+    gatewayFns: []
 },
  {
     plainText: '21',
@@ -263,7 +286,8 @@ const allGameText = [{
     findableObjects: [],
     directions: [],
     requirements: [],
-    beenHere: []
+    beenHere: [],
+    gatewayFns: []
 },
  {
     plainText: '22',
@@ -273,7 +297,8 @@ const allGameText = [{
     findableObjects: [],
     directions: [],
     requirements: [],
-    beenHere: []
+    beenHere: [],
+    gatewayFns: []
 },
  {
     plainText: '23',
@@ -283,7 +308,8 @@ const allGameText = [{
     findableObjects: [],
     directions: [],
     requirements: [],
-    beenHere: []
+    beenHere: [],
+    gatewayFns: []
 },
  {
     plainText: '24',
@@ -293,7 +319,8 @@ const allGameText = [{
     findableObjects: [],
     directions: [],
     requirements: [],
-    beenHere: []
+    beenHere: [],
+    gatewayFns: []
 },
  {
     plainText: '25',
@@ -303,7 +330,8 @@ const allGameText = [{
     findableObjects: [],
     directions: [],
     requirements: [],
-    beenHere: []
+    beenHere: [],
+    gatewayFns: []
 }];
 
 // Functions --------------------------------------------
@@ -371,7 +399,7 @@ const inputTester = function(input, [verbs, objirections], directions) {
                     if (!(find('answers').length === 1)) {
                         // add gateway text?
                         console.log('not done yet');
-                        addInstruction('---gateway passed---') // TEMP MSG
+                        find('gatewayFns')[0](); // calls gateway function
                         // add found objects to inventory?
 
                         find('answers').shift(); // IMPORTANT to remember this never removes directions as they are always the last element in the answers array
