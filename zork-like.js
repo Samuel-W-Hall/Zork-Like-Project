@@ -50,183 +50,261 @@ const allGameText = [{
     hint: '',
     transitionText: '',
     answers: [],
+    findableObjects: [],
     directions: [],
-    requirements: []},
+    requirements: [],
+    beenHere: []
+},
     {
     plainText: '2',
     hint: '',
     transitionText: '',
     answers: [],
+    findableObjects: [],
     directions: [],
-    requirements: []},
+    requirements: [],
+    beenHere: []
+},
  {
     plainText: '3',
     hint: '',
     transitionText: '',
     answers: [],
+    findableObjects: [],
     directions: [],
-    requirements: []},
+    requirements: [],
+    beenHere: []
+},
  {
     plainText: '4',
     hint: '',
     transitionText: '',
     answers: [],
+    findableObjects: [],
     directions: [],
-    requirements: []},
+    requirements: [],
+    beenHere: []
+},
  {
     plainText: '5',
     hint: '',
     transitionText: '',
     answers: [],
+    findableObjects: [],
     directions: [],
-    requirements: []},
+    requirements: [],
+    beenHere: []
+},
  {
     plainText: '6',
     hint: '',
     transitionText: '',
     answers: [],
+    findableObjects: [],
     directions: [],
-    requirements: []},
+    requirements: [],
+    beenHere: []
+},
  {
     plainText: '7',
     hint: '',
     transitionText: '',
     answers: [],
+    findableObjects: [],
     directions: [],
-    requirements: []},
+    requirements: [],
+    beenHere: []
+},
  {
     plainText: '8',
     hint: '',
     transitionText: '',
     answers: [],
+    findableObjects: [],
     directions: [],
-    requirements: []},
+    requirements: [],
+    beenHere: []
+},
  {
     plainText: '9',
     hint: '',
     transitionText: '',
     answers: [],
+    findableObjects: [],
     directions: [],
-    requirements: []},
+    requirements: [],
+    beenHere: []
+},
  {
     plainText: '10',
     hint: '',
     transitionText: '',
     answers: [],
+    findableObjects: [],
     directions: [],
-    requirements: []},
+    requirements: [],
+    beenHere: []
+},
  {
     plainText: '11',
     hint: '',
     transitionText: '',
     answers: [],
+    findableObjects: [],
     directions: [],
-    requirements: []},
+    requirements: [],
+    beenHere: []
+},
  {
     plainText: '12',
     hint: '',
     transitionText: '',
     answers: [],
+    findableObjects: [],
     directions: [],
-    requirements: []},
+    requirements: [],
+    beenHere: []
+},
  {
     plainText: `You wake up in an empty office. You are lying on a long conference table. You feel weak. But you `,
     hint: 'tell yourself to get up.',
     transitionText: '',
     answers: [[['get', 'wake'], ['up']]],
+    findableObjects: [],
     directions: [[1, 1]],
-    requirements: []},
+    requirements: [],
+    beenHere: []
+},
  {
     plainText: 'The only thing in here besides the table and chairs is a painting of [INSERT TEXT HERE]. To your right there is a reinforced metal door with a keycard lock. Instinctively you ',
     hint: 'check your pockets...',
     transitionText: 'You drag yourself off the table and look around the room',
     answers: [[['swipe', 'use'], ['keycard', 'card']]],
+    findableObjects: [],
     directions: [[0, 1]],
-    requirements: ['keycard', 'card']},
+    requirements: ['keycard', 'card'],
+    beenHere: []
+},
  {
     plainText: '',
     hint: '',
     transitionText: '',
     answers: [],
+    findableObjects: [],
     directions: [],
-    requirements: []},
+    requirements: [],
+    beenHere: []
+},
  {
     plainText: '15',
     hint: '',
     transitionText: '',
     answers: [],
+    findableObjects: [],
     directions: [],
-    requirements: []},
+    requirements: [],
+    beenHere: []
+},
  {
     plainText: '16',
     hint: '',
     transitionText: '',
     answers: [],
+    findableObjects: [],
     directions: [],
-    requirements: []},
+    requirements: [],
+    beenHere: []
+},
  {
     plainText: '17',
     hint: '',
     transitionText: '',
     answers: [],
+    findableObjects: [],
     directions: [],
-    requirements: []},
+    requirements: [],
+    beenHere: []
+},
  {
-    plainText: 'You walk into a corridor. You can go ',
+    plainText: 'You find youself in a long corridor. You can go ',
     hint: 'North, or South.',
     transitionText: 'You swipe the yellow keycard, the door clanks open.',
     answers: [[['go', 'walk'], ['north', 'south']]],
+    findableObjects: [],
     directions: [[1, 1], [1, -1]],
-    requirements: []},
+    requirements: [],
+    beenHere: []
+},
  {
     plainText: '19',
     hint: '',
     transitionText: '',
-    answers: [],
-    directions: [],
-    requirements: []},
+    answers: [[['go'], ['south']]],
+    findableObjects: [],
+    directions: [[1, -1]],
+    requirements: [],
+    beenHere: []
+},
  {
     plainText: '20',
     hint: '',
     transitionText: '',
     answers: [],
+    findableObjects: [],
     directions: [],
-    requirements: []},
+    requirements: [],
+    beenHere: []
+},
  {
     plainText: '21',
     hint: '',
     transitionText: '',
     answers: [],
+    findableObjects: [],
     directions: [],
-    requirements: []},
+    requirements: [],
+    beenHere: []
+},
  {
     plainText: '22',
     hint: '',
     transitionText: '',
     answers: [],
+    findableObjects: [],
     directions: [],
-    requirements: []},
+    requirements: [],
+    beenHere: []
+},
  {
     plainText: '23',
     hint: '',
     transitionText: '',
     answers: [],
+    findableObjects: [],
     directions: [],
-    requirements: []},
+    requirements: [],
+    beenHere: []
+},
  {
     plainText: '24',
     hint: '',
     transitionText: '',
     answers: [],
+    findableObjects: [],
     directions: [],
-    requirements: []},
+    requirements: [],
+    beenHere: []
+},
  {
     plainText: '25',
     hint: '',
     transitionText: '',
     answers: [],
+    findableObjects: [],
     directions: [],
-    requirements: []}];
+    requirements: [],
+    beenHere: []
+}];
 
 // Functions --------------------------------------------
 
@@ -260,19 +338,6 @@ const find = (property) => allGameTextMap.get(String(currentLocation))[property]
 
 // Pockets
 
-// TO DO: add html div similar to instruct msg but maybe have items in blue? to tell player inventory
-// const checkPockets = function() {
-//     let pocketsMsg = (pockets.length === 0) ? `Your pockets are empty` : `You check your pockets and find a ${pockets[0]}`;
-//     if (pockets.length > 1) {
-//         for (let i=1; i<pockets.length-1; i++) {
-//             console.log(i);
-//             pocketsMsg += `, a ${pockets[i]}`
-//         }
-//     pocketsMsg += ` and a ${pockets.slice(-1)}`;
-//     }
-//     addInvEl(pocketsMsg, 'div', 'inv', gameText);
-// };
-
 const checkPockets = function() {
     const pocketsMsg = (pockets.length === 0) ? `Your pockets are empty` : `You check your pockets and find a `;
     addInvEl(pocketsMsg, 'div', 'firstInvText', gameText);
@@ -305,10 +370,12 @@ const inputTester = function(input, [verbs, objirections], directions) {
                 // GATEWAYS
                     if (!(find('answers').length === 1)) {
                         console.log('not done yet');
-                        find('answers').shift();
+                        // add gateway text?
+                        // add found objects to inventory?
+                        find('answers').shift(); // IMPORTANT to remember this never removes directions as they are always the last element in the answers array
                     } else {
                         if ((!(find('requirements').includes(splitInput[1]))) || pockets.some((item) => item['names'].includes(splitInput[1]))) { ///// HELP
-                            // CONTINUE
+                            // CONTINUE TO NEXT ROOM
                             playerInput.blur();
                             [...allText.children].forEach((el) => el.style.opacity = 0);
                             if (directions.length === 1) {
@@ -323,7 +390,11 @@ const inputTester = function(input, [verbs, objirections], directions) {
                             setTimeout(function() {
                                 // remove all added instructions
                                 document.querySelectorAll('.added').forEach((el) => el.remove())
-                                addTransitionText();
+                                let timesBeenHere = find('beenHere').length;
+                                if (timesBeenHere === 0) {
+                                    addTransitionText();
+                                    find('beenHere').push('✅')
+                                };
                                 setGameText();
                                 setTimeout(function() { // game (story) text appears last
                                 gameText.style.opacity = 100;
