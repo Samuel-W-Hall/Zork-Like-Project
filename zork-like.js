@@ -1,7 +1,7 @@
 "use strict";
 
 // Element grabbing -------------------------------------
-const text = document.querySelector('h1');
+const title = document.querySelector('h1');
 const startButton = document.querySelector('button');
 const startScreen = document.querySelector('#start-screen');
 const gameText = document.querySelector('.game-text');
@@ -179,7 +179,7 @@ const allGameText = [{
     plainText: 'The only thing in here besides the table and chairs is a painting of [INSERT TEXT HERE]. To your right there is a reinforced metal door with a keycard lock. Instinctively you ',
     hint: 'check your pockets...',
     transitionText: 'You drag yourself off the table and look around the room',
-    answers: [[['swipe', 'use'], ['keycard', 'card']]],
+    answers: [[['swipe', 'use'], ['keycard', 'card']], [['swipe', 'use'], ['keycard', 'card']]],
     findableObjects: [],
     directions: [[0, 1]],
     requirements: ['keycard', 'card'],
@@ -369,15 +369,19 @@ const inputTester = function(input, [verbs, objirections], directions) {
             if (objirections.includes(splitInput[1])) {
                 // GATEWAYS
                     if (!(find('answers').length === 1)) {
-                        console.log('not done yet');
                         // add gateway text?
+                        console.log('not done yet');
+                        addInstruction('---gateway passed---') // TEMP MSG
                         // add found objects to inventory?
+
                         find('answers').shift(); // IMPORTANT to remember this never removes directions as they are always the last element in the answers array
                     } else {
-                        if ((!(find('requirements').includes(splitInput[1]))) || pockets.some((item) => item['names'].includes(splitInput[1]))) { ///// HELP
+                        if ((!(find('requirements').includes(splitInput[1]))) || pockets.some((item) => item['names'].includes(splitInput[1]))) { ///// if the item/direction isn't "locked" in the requirements arr AND/OR said item/direction is in the players pockets then...
                             // CONTINUE TO NEXT ROOM
                             playerInput.blur();
+                            // Remove all added text
                             [...allText.children].forEach((el) => el.style.opacity = 0);
+                            // if there is only one direction choice
                             if (directions.length === 1) {
                                 let index = directions[0][0];
                                 let num = directions[0][1];
@@ -401,7 +405,7 @@ const inputTester = function(input, [verbs, objirections], directions) {
                                 playerInput.focus();
                                 }, 3500);
                             }, 1500);
-                        };
+                        } else addInstruction(`LOCKED BY REQUIREMENTS ARRAY`);
                         checked = false;
                     };
             } else addInstruction(`\n "${splitInput[1]}" is not a valid direction or object, please try again`);
@@ -447,13 +451,13 @@ const addTransitionText = function() {
 
 // Title grow/shrink effect
 const emphasizeTitle = function (e) {
-    text.style.fontSize = '80px';
-    text.style.letterSpacing = '0.075cm'
+    title.style.fontSize = '80px';
+    title.style.letterSpacing = '0.075cm'
 };
 
 const defaultTitle = function(e) {
-    text.style.fontSize = '70px';
-    text.style.letterSpacing = 'normal'
+    title.style.fontSize = '70px';
+    title.style.letterSpacing = 'normal'
 };
 
 
