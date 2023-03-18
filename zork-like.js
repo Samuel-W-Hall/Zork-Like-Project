@@ -17,13 +17,13 @@ let pockets = [
         names: ['keycard', 'card'],
         text: 'blank yellow keycard'
     }, 
-    {
-        names: ['wallet'],
-        text: 'leather wallet'
-    },
     { 
         names: ['donut'],
         text: 'sugar strand donut'
+    },
+    {
+        name: ['compass'],
+        text: 'compass'
     }
 ];
 
@@ -206,17 +206,6 @@ const allGameText = [{
     }]
 },
  {
-    plainText: '',
-    hint: '',
-    transitionText: '',
-    answers: [],
-    findableObjects: [],
-    directions: [],
-    requirements: [],
-    beenHere: [],
-    gatewayFns: []
-},
- {
     plainText: '15',
     hint: '',
     transitionText: '',
@@ -249,8 +238,20 @@ const allGameText = [{
     beenHere: [],
     gatewayFns: []
 },
- {
-    plainText: 'You find youself in a long corridor. You can go ',
+{
+
+    plainText: '18',
+    hint: '',
+    transitionText: '',
+    answers: [[['go'], ['north']]],
+    findableObjects: [],
+    directions: [[1, 1]],
+    requirements: [],
+    beenHere: [],
+    gatewayFns: []
+},
+{
+    plainText: '[MORE DETAIL NEEDED] You find youself in a long corridor. You can go ',
     hint: 'North, or South.',
     transitionText: 'You swipe the yellow keycard, the door clanks open.',
     answers: [[['go', 'walk'], ['north', 'south']]],
@@ -260,24 +261,14 @@ const allGameText = [{
     beenHere: [],
     gatewayFns: []
 },
- {
-    plainText: '19',
+
+{
+    plainText: 'You reach the end of the corridor. There is a blue door to the east and a red door to the west. Or you can go South back down the corridor',
     hint: '',
     transitionText: '',
-    answers: [[['go'], ['south']]],
+    answers: [[['go'], ['south', 'west', 'east']]],
     findableObjects: [],
-    directions: [[1, -1]],
-    requirements: [],
-    beenHere: [],
-    gatewayFns: []
-},
- {
-    plainText: '20',
-    hint: '',
-    transitionText: '',
-    answers: [],
-    findableObjects: [],
-    directions: [],
+    directions: [[1, -1], [0, -1], [0, 1]],
     requirements: [],
     beenHere: [],
     gatewayFns: []
@@ -389,17 +380,19 @@ const checkPockets = function() {
 
 // Big LOGIC -------------------------------------------------------
 
-// NEEDS REFACTORING
+const pocketsSynonyms = ['check pockets', 'check pocket', 'look in pockets', 'look in pocket', 'pockets']
 
+// NEEDS REFACTORING
 const inputTester = function(input, [verbs, objirections], directions) {
     const splitInput = String(input).toLowerCase().split(" ");
-    if ((input.toLowerCase().trim() === 'check pockets')) {
+    if ((pocketsSynonyms.includes(input.toLowerCase().trim()))) {
         if (checked) return;
         checkPockets();
     } else {
         if (verbs.includes(splitInput[0])) {
             if (objirections.includes(splitInput[1])) {
                 // GATEWAYS
+                if ((!(find('requirements').includes(splitInput[1]))) || pockets.some((item) => item['names'].includes(splitInput[1]))) {
                     if (!(find('answers').length === 1)) {
                         // add gateway text?
                         console.log('not done yet');
@@ -408,8 +401,8 @@ const inputTester = function(input, [verbs, objirections], directions) {
 
                         find('answers').shift(); // IMPORTANT to remember this never removes directions as they are always the last element in the answers array
                     } else {
-                        if ((!(find('requirements').includes(splitInput[1]))) || pockets.some((item) => item['names'].includes(splitInput[1]))) { ///// if the item/direction isn't "locked" in the requirements arr AND/OR said item/direction is in the players pockets then...
-                            // CONTINUE TO NEXT ROOM
+ ///// if the item/direction isn't "locked" in the requirements arr AND/OR said item/direction is in the players pockets then...
+                            // !!! CONTINUE TO NEXT ROOM !!!
                             playerInput.blur();
                             // Remove all added text
                             [...allText.children].forEach((el) => el.style.opacity = 0);
@@ -437,11 +430,11 @@ const inputTester = function(input, [verbs, objirections], directions) {
                                 playerInput.focus();
                                 }, 3500);
                             }, 1500);
-                        } else addInstruction(`LOCKED BY REQUIREMENTS ARRAY`);
+                        };
                         checked = false;
-                    };
+                    } else addInstruction(`LOCKED BY REQUIREMENTS ARRAY`);
             } else addInstruction(`\n "${splitInput[1]}" is not a valid direction or object, please try again`);
-        } else addInstruction(`Cannot recognise "${input}", please type a verb followed by a direction or object`);
+        } else addInstruction(`"${input}" is not a valid instruction at this time, please type a verb followed by either a direction or an object`);
 };
 };
 
