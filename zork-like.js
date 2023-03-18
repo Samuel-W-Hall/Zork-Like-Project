@@ -198,7 +198,11 @@ const allGameText = [{
     requirements: ['keycard', 'card'],
     beenHere: [],
     gatewayFns: [function() {
-        addInstruction('---gateway passed---');
+        addInstruction('A red light appears on the lock, you try swiping again');
+        // Removing item from pockets
+        // pockets = pockets.filter((obj) => {
+        //     return !obj['names'].includes('card');
+        // });
     }]
 },
  {
