@@ -506,7 +506,7 @@ const inputTester = function(input, [verbs, objirections], directions) {
                         };
                         checked = false;
                     } else addInstruction(`LOCKED BY REQUIREMENTS ARRAY`);
-            } else addInstruction(`\n "${'DO THIS'}" is not a valid direction or object, please try again`);
+            } else addInstruction(`\n "${strInput.split(" ").slice(-1)}" is not a valid direction or object, please try again`);
         } else addInstruction(`"${input}" is not a valid instruction at this time, please type a verb followed by either a direction or an object`);
 };
 };
