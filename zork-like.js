@@ -41,6 +41,12 @@ console.log(...[5]);
 // console.log('test'[0]);
 // BIG Array of ALL locations
 
+// if (xyz) {
+
+// } else {
+
+// }
+
 // direction: [0, 1] = East, [0, -1] = West, [1, 1] = North, [1, -1] = South 
 
 // Remember inputTester checks against first element of Answers first so this can be a gateway to next part of same room.
@@ -194,18 +200,18 @@ const allGameText = [{
     plainText: 'The only thing in here besides the table and chairs is a painting of [INSERT TEXT HERE]. To your right there is a reinforced metal door with a keycard lock. Instinctively you ',
     hint: 'check your pockets...',
     transitionText: 'You drag yourself off the table and look around the room',
-    answers: [[['swipe', 'use'], ['keycard', 'card']], [['swipe', 'use'], ['keycard', 'card']]],
+    answers: [[['swipe', 'use'], ['keycard', 'card']]],
     findableObjects: [],
     directions: [[0, 1]],
     requirements: ['keycard', 'card'],
     beenHere: [],
-    gatewayFns: [function() {
+    gatewayFns: new Map([[[['swipe', 'use'], ['keycard', 'card']], function() {
         addInstruction('A red light appears on the lock, you try swiping again');
         // Removing item from pockets
         // pockets = pockets.filter((obj) => {
         //     return !obj['names'].includes('card');
         // });
-    }]
+    }]])
 },
  {
     plainText: 'In the cafeteria you notice a clean dining table and a gigantic fridge. You can go west, following signs to "Bathrooms" or east, towards "Maintenance".',
@@ -267,7 +273,7 @@ const allGameText = [{
 },
 
 {
-    plainText: 'You reach the end of the corridor. There is a blue door to the east with a sign that reads "Cafeteria" and a red door to the west with a sign that reads "Maintenance". Or you can go South back down the corridor',
+    plainText: 'You reach the end of the corridor. There is a blue door to the west with a sign that reads "Cafeteria" and a red door to the east with a sign that reads "Maintenance". Or you can go South back down the corridor',
     hint: '',
     transitionText: '',
     answers: [[['go'], ['south', 'west', 'east']]],
@@ -456,59 +462,123 @@ const pocketsSynonyms = ['check pockets', 'check pocket', 'look in pockets', 'lo
 
 
 // TODO: use find('answers').slice[-1] to change location, use indexOf and answers.some(......) to check for any valid inputs which *do something* e.g open fridge. TLDR: make it so can travel to new location without having to open fridge
-const inputTester = function(input, [verbs, objirections], directions) {
+// const inputTester = function(input, [verbs, objirections], directions) {
+//     const strInput = String(input).toLowerCase();
+//     if ((pocketsSynonyms.includes(input.toLowerCase().trim()))) {
+//         if (checked) return;
+//         checkPockets();
+//     } else {
+//         if (verbs.some((verb) => strInput.startsWith(verb))) {
+//             if (objirections.some((objirection) => strInput.endsWith(objirection))) {
+//                 // GATEWAYS
+//                 if ((!(find('requirements').some((req)=> strInput.endsWith(req)))) || pockets.some((item) => item['names'].some((itemName) => strInput.endsWith(itemName)))) {
+//                     if (!(find('answers').length === 1)) {
+//                         // add gateway text?
+//                         console.log('not done yet');
+//                         find('gatewayFns')[0](); // calls gateway function
+//                         // add found objects to inventory?
+
+//                         find('answers').shift(); // IMPORTANT to remember this never removes directions as they are always the last element in the answers array
+//                     } else {
+//  ///// if the item/direction isn't "locked" in the requirements arr AND/OR said item/direction is in the players pockets then...
+//                             // !!! CONTINUE TO NEXT ROOM !!!
+//                             playerInput.blur();
+//                             // Remove all added text
+//                             [...allText.children].forEach((el) => el.style.opacity = 0);
+//                             // if there is only one direction choice
+//                             if (directions.length === 1) {
+//                                 let index = directions[0][0];
+//                                 let num = directions[0][1];
+//                                 currentLocation[index] += num 
+//                             } else { // direction must be a choice
+//                                 const coords = directionMap.get(strInput.toLowerCase().split(" ").slice(-1)[0][0]);
+//                                 currentLocation[coords[0]] += coords[1];
+//                             }
+//                             console.log(currentLocation);
+//                             setTimeout(function() {
+//                                 // remove all added instructions
+//                                 document.querySelectorAll('.added').forEach((el) => el.remove())
+//                                 let timesBeenHere = find('beenHere').length;
+//                                 setGameText();
+//                                 if (timesBeenHere === 0) {
+//                                     addTransitionText();
+//                                     find('beenHere').push('✅')
+//                                     setTimeout(function() { // game (story) text appears last
+//                                         gameText.style.opacity = 100;
+//                                         playerInput.focus();
+//                                         }, 3000);
+//                                 } else makeGameTextVisible();
+//                             }, 1500);
+//                         };
+//                         checked = false;
+//                     } else addInstruction(`LOCKED BY REQUIREMENTS ARRAY`);
+//             } else addInstruction(`\n "${strInput.split(" ").slice(-1)}" is not a valid direction or object, please try again`);
+//         } else addInstruction(`"${input}" is not a valid instruction at this time, please type a verb followed by either a direction or an object`);
+// };
+// };
+
+// Reworking for just 2 arguments
+const inputTester = function(input, location) {
+    let didSomething = false;
+    console.log(location);
     const strInput = String(input).toLowerCase();
     if ((pocketsSynonyms.includes(input.toLowerCase().trim()))) {
         if (checked) return;
         checkPockets();
     } else {
-        if (verbs.some((verb) => strInput.startsWith(verb))) {
-            if (objirections.some((objirection) => strInput.endsWith(objirection))) {
+        const [verb, objirection] = strInput.split(" ")
+        location.gatewayFns.forEach((value, key, map) => {
+            // console.log(key);
+            // console.log(key[0].includes(verb));
+            // console.log(key[1].includes(objirection));
+            if ((key[0].includes(verb)) && (key[1].includes(objirection))) { 
+                value(); // Calls gateway function
+                didSomething = true;
+                return
+            } 
+            
+        });
+        // check for direction
+        if (!didSomething) {
+        if (location.answers.at(-1)[0].some((verb) => strInput.startsWith(verb))) {
+            if (location.answers.at(-1)[1].some((objirection) => strInput.endsWith(objirection))) {
                 // GATEWAYS
-                if ((!(find('requirements').some((req)=> strInput.endsWith(req)))) || pockets.some((item) => item['names'].some((itemName) => strInput.endsWith(itemName)))) {
-                    if (!(find('answers').length === 1)) {
-                        // add gateway text?
-                        console.log('not done yet');
-                        find('gatewayFns')[0](); // calls gateway function
-                        // add found objects to inventory?
-
-                        find('answers').shift(); // IMPORTANT to remember this never removes directions as they are always the last element in the answers array
-                    } else {
+                if ((!(location.requirements.some((req)=> strInput.endsWith(req)))) || pockets.some((item) => item['names'].some((itemName) => strInput.endsWith(itemName)))) {
  ///// if the item/direction isn't "locked" in the requirements arr AND/OR said item/direction is in the players pockets then...
-                            // !!! CONTINUE TO NEXT ROOM !!!
-                            playerInput.blur();
-                            // Remove all added text
-                            [...allText.children].forEach((el) => el.style.opacity = 0);
-                            // if there is only one direction choice
-                            if (directions.length === 1) {
-                                let index = directions[0][0];
-                                let num = directions[0][1];
-                                currentLocation[index] += num 
-                            } else { // direction must be a choice
-                                const coords = directionMap.get(strInput.toLowerCase().split(" ").slice(-1)[0][0]);
-                                currentLocation[coords[0]] += coords[1];
-                            }
-                            console.log(currentLocation);
-                            setTimeout(function() {
-                                // remove all added instructions
-                                document.querySelectorAll('.added').forEach((el) => el.remove())
-                                let timesBeenHere = find('beenHere').length;
-                                setGameText();
-                                if (timesBeenHere === 0) {
-                                    addTransitionText();
-                                    find('beenHere').push('✅')
-                                    setTimeout(function() { // game (story) text appears last
-                                        gameText.style.opacity = 100;
-                                        playerInput.focus();
-                                        }, 3000);
-                                } else makeGameTextVisible();
-                            }, 1500);
-                        };
-                        checked = false;
-                    } else addInstruction(`LOCKED BY REQUIREMENTS ARRAY`);
-            } else addInstruction(`\n "${strInput.split(" ").slice(-1)}" is not a valid direction or object, please try again`);
-        } else addInstruction(`"${input}" is not a valid instruction at this time, please type a verb followed by either a direction or an object`);
-};
+                    // !!! CONTINUE TO NEXT ROOM !!!
+                    playerInput.blur();
+                    // Remove all added text
+                    [...allText.children].forEach((el) => el.style.opacity = 0);
+                    // if there is only one direction choice
+                    if (location.directions.length === 1) {
+                        let index = location.directions[0][0];
+                        let num = location.directions[0][1];
+                        currentLocation[index] += num 
+                    } else { // direction must be a choice
+                        const coords = directionMap.get(strInput.toLowerCase().split(" ").slice(-1)[0][0]);
+                        currentLocation[coords[0]] += coords[1];
+                    }
+                    console.log(currentLocation);
+                    setTimeout(function() {
+                        // remove all added instructions
+                        document.querySelectorAll('.added').forEach((el) => el.remove())
+                        let timesBeenHere = location.beenHere.length;
+                        setGameText();
+                        if (timesBeenHere === 0) {
+                            addTransitionText();
+                            location.beenHere.push('✅');
+                            setTimeout(function() { // game (story) text appears last
+                                gameText.style.opacity = 100;
+                                playerInput.focus();
+                            }, 3000);
+                        } else makeGameTextVisible();
+                    }, 1500);
+                checked = false;
+            } else addInstruction(`LOCKED BY REQUIREMENTS ARRAY`);
+        } else addInstruction(`\n "${strInput.split(" ").slice(-1)}" is not a valid direction or object, please try again`);
+    } else addInstruction(`"${input}" is not a valid instruction at this time, please type a verb followed by either a direction or an object`);
+}
+    }
 };
 
 
@@ -607,8 +677,10 @@ document.addEventListener('keypress', (e) => {
     if (name === "Enter") {
         e.preventDefault();
         currentInput = playerInput.value;
-        inputTester(currentInput, find('answers')[0], find('directions'));
+        // inputTester(currentInput, find('answers')[0], find('directions'));
+        inputTester(currentInput, allGameTextMap.get(String(currentLocation)));
         playerInput.value = ""; // clear input field
+        // console.log(allGameTextMap.get(String(currentLocation)));
     }
 })
 
