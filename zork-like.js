@@ -233,7 +233,10 @@ const allGameText = [{
             names: ['key'],
             text: 'metal key'
         });
-        checked = false;
+        if (checked === true) {
+            document.querySelector('.firstInvText').remove();
+            checked = false;
+        }
         location.requirements.splice(location.requirements.indexOf('west'), 1);
     }]])
 },
@@ -384,7 +387,7 @@ const find = (property) => allGameTextMap.get(String(currentLocation))[property]
 
 const checkPockets = function() {
     const pocketsMsg = (pockets.length === 0) ? `Your pockets are empty` : `You check your pockets and find a `;
-    // NEED SOMETHING HERE when checking pockets AGAIN after picking something up (possibly doc.querSel('.firstInvText').textContent = '' before its added again)
+    // MIGHT NEED SOMETHING HERE when checking pockets AGAIN after picking something up (possibly doc.querSel('.firstInvText').textContent = '' before its added again)
     addInvEl(pocketsMsg, 'div', 'firstInvText', gameText);
     const firstInvText = document.querySelector('.firstInvText');
     addInvEl(`${pockets[0]['text']}`, 'span', 'invItem', firstInvText);
@@ -534,7 +537,7 @@ const inputTester = function(input, location) {
                 if ((key[0].includes(verb)) && (key[1].includes(objirection))) { 
                     value(location); // Calls gateway function
                     didSomething = true;
-                    location.gatewayFns.delete(key)
+                    location.gatewayFns.delete(key);
                     return
                 } 
             });
