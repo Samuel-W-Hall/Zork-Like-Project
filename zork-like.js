@@ -233,6 +233,7 @@ const allGameText = [{
             names: ['key'],
             text: 'metal key'
         });
+        checked = false;
         location.requirements.splice(location.requirements.indexOf('west'), 1);
     }]])
 },
@@ -383,6 +384,7 @@ const find = (property) => allGameTextMap.get(String(currentLocation))[property]
 
 const checkPockets = function() {
     const pocketsMsg = (pockets.length === 0) ? `Your pockets are empty` : `You check your pockets and find a `;
+    // NEED SOMETHING HERE when checking pockets AGAIN after picking something up (possibly something.textContent = '' before its added again)
     addInvEl(pocketsMsg, 'div', 'firstInvText', gameText);
     const firstInvText = document.querySelector('.firstInvText');
     addInvEl(`${pockets[0]['text']}`, 'span', 'invItem', firstInvText);
@@ -396,20 +398,6 @@ const checkPockets = function() {
     }
     checked = true;
 }
-
-// const testVar = 'go to maintenance';
-// console.log(testVar.startsWith('go to'));
-
-const testArr = ['go to', 'walk to', 'go', 'g'];
-const testInput = 'go to maintenance'
-// console.log(testInput.startsWith('go'));
-// console.log(typeof(testArr[2]));
-// console.log(typeof(testInput));
-// console.log(testInput.startsWith(testArr[2]));
-const testSome = testArr.some((verb) => {
-    return verb === 'go to'
-})
-console.log(testSome);
 // Big LOGIC -------------------------------------------------------
 
 const pocketsSynonyms = ['check pockets', 'check pocket', 'look in pockets', 'look in pocket', 'pockets']
