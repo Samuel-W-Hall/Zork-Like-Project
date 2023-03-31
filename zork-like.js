@@ -384,7 +384,7 @@ const find = (property) => allGameTextMap.get(String(currentLocation))[property]
 
 const checkPockets = function() {
     const pocketsMsg = (pockets.length === 0) ? `Your pockets are empty` : `You check your pockets and find a `;
-    // NEED SOMETHING HERE when checking pockets AGAIN after picking something up (possibly something.textContent = '' before its added again)
+    // NEED SOMETHING HERE when checking pockets AGAIN after picking something up (possibly doc.querSel('.firstInvText').textContent = '' before its added again)
     addInvEl(pocketsMsg, 'div', 'firstInvText', gameText);
     const firstInvText = document.querySelector('.firstInvText');
     addInvEl(`${pockets[0]['text']}`, 'span', 'invItem', firstInvText);
