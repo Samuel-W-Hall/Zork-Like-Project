@@ -59,8 +59,8 @@ TESTING AREA
 
 // BIG Array of ALL locations
 const allGameText = [{
-    plainText: '1',         // STORY TEXT
-    hint: '',               // HIGHLIGHTED TEXT
+    plainText: '1',         // *consider combining these properties
+    hint: '',               // to create new "html" property*
     transitionText: '',     // LOADS IN FIRST ONLY IF NOT BEEN HERE YET
     answers: [],            // (possibly only needs to be movement ans)
     findableObjects: [],    // TODO: get rid of????
