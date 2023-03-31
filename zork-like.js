@@ -8,10 +8,12 @@ const gameText = document.querySelector('.game-text');
 const allText = document.querySelector('.text');
 const gameTextPlain = document.querySelector('.plain-text');
 const hintElement = document.querySelector('.hint-text');
+
+// Initial values
 const start = [0, 0];
 let currentLocation = start;
 let playerInput = document.querySelector('.playerInput');
-
+let checked = false;
 let pockets = [
     {
         names: ['keycard', 'card'],
@@ -27,48 +29,45 @@ let pockets = [
     }
 ];
 
-let checked = false;
+// TODO: maybe work this into individual locations so directions can have specialised nicknames e.g directionMap.set([0, -1], ['west', 'cafeteria'])
 
+// maybe flip key/values
 const directionMap = new Map();
 directionMap.set('n', [1, 1]);
 directionMap.set('e', [0, 1]);
 directionMap.set('s', [1, -1]);
 directionMap.set('w', [0, -1]);
 
-console.log(...[1, 2, 3, 4, 5].slice(-1));
-console.log(directionMap);
-console.log(...[5]);
+/*
+TESTING AREA
 
-// const test = new Map([[1, 2]])
-// console.log(test);
-// const test2 = test.delete(1);
-// console.log(test2);
 
-// console.log('test'[0]);
-// BIG Array of ALL locations
 
-// if (xyz) {
 
-// } else {
 
-// }
+
+*/
+
+
+
 
 // direction: [0, 1] = East, [0, -1] = West, [1, 1] = North, [1, -1] = South 
 
 // Remember inputTester checks against first element of Answers first so this can be a gateway to next part of same room.
 
-// TO DO: Requirements should work like checks. e.g if a location has a gateway e.g 'keycard', the input tester should account for this
+// TODO: Requirements should work like checks. e.g if a DIRECTION has a gateway e.g 'keycard', the input tester should account for this
 
+// BIG Array of ALL locations
 const allGameText = [{
-    plainText: '1',
-    hint: '',
-    transitionText: '',
-    answers: [],
-    findableObjects: [],
-    directions: [],
-    requirements: [],
-    beenHere: [],
-    gatewayFns: []
+    plainText: '1',         // STORY TEXT
+    hint: '',               // HIGHLIGHTED TEXT
+    transitionText: '',     // LOADS IN FIRST ONLY IF NOT BEEN HERE YET
+    answers: [],            // (possibly only needs to be movement ans)
+    findableObjects: [],    // TODO: get rid of????
+    directions: [],         // TODO: think this needs refactoring
+    requirements: [],       // TODO: combine with above???
+    beenHere: [],           // BOOLEAN VALUE, COMPLETE
+    gatewayFns: []          // MAP, more possibilities here?
 },
     {
     plainText: '2',
@@ -472,7 +471,7 @@ const pocketsSynonyms = ['check pockets', 'check pocket', 'look in pockets', 'lo
 // };
 
 
-// TODO: use find('answers').slice[-1] to change location, use indexOf and answers.some(......) to check for any valid inputs which *do something* e.g open fridge. TLDR: make it so can travel to new location without having to open fridge
+// use find('answers').slice[-1] to change location, use indexOf and answers.some(......) to check for any valid inputs which *do something* e.g open fridge. TLDR: make it so can travel to new location without having to open fridge
 // const inputTester = function(input, [verbs, objirections], directions) {
 //     const strInput = String(input).toLowerCase();
 //     if ((pocketsSynonyms.includes(input.toLowerCase().trim()))) {
@@ -528,10 +527,11 @@ const pocketsSynonyms = ['check pockets', 'check pocket', 'look in pockets', 'lo
 // };
 // };
 
-// Reworking for just 2 arguments
+
+// Reworked for just 2 arguments (doesn't work for 3+ word inputs)
 const inputTester = function(input, location) {
     let didSomething = false;
-    console.log(location);
+    // console.log(location);
     const strInput = String(input).toLowerCase();
     if ((pocketsSynonyms.includes(input.toLowerCase().trim()))) {
         if (checked) return;
