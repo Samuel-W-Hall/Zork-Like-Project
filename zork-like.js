@@ -22,7 +22,7 @@ let pockets = [
         text: 'sugar strand donut'
     },
     {
-        name: ['compass'],
+        names: ['compass'],
         text: 'compass'
     }
 ];
@@ -38,6 +38,12 @@ directionMap.set('w', [0, -1]);
 console.log(...[1, 2, 3, 4, 5].slice(-1));
 console.log(directionMap);
 console.log(...[5]);
+
+// const test = new Map([[1, 2]])
+// console.log(test);
+// const test2 = test.delete(1);
+// console.log(test2);
+
 // console.log('test'[0]);
 // BIG Array of ALL locations
 
@@ -205,7 +211,7 @@ const allGameText = [{
     directions: [[0, 1]],
     requirements: ['keycard', 'card'],
     beenHere: [],
-    gatewayFns: new Map([[[['swipe', 'use'], ['keycard', 'card']], function() {
+    gatewayFns: new Map([[[['swipe', 'use'], ['keycard', 'card']], function(location) {
         addInstruction('A red light appears on the lock, you try swiping again');
         // Removing item from pockets
         // pockets = pockets.filter((obj) => {
@@ -217,14 +223,19 @@ const allGameText = [{
     plainText: 'In the cafeteria you notice a clean dining table and a gigantic fridge. You can go west, following signs to "Bathrooms" or east, towards "Maintenance".',
     hint: '',
     transitionText: 'You open the door and walk into the cafeteria',
-    answers: [[['look in', 'open'], ['fridge', 'refrigerator']], [['go'], ['east', 'west']]],
+    answers: [[['go'], ['east', 'west']]],
     findableObjects: [],
     directions: [[0, 1], [0,-1]],
-    requirements: [],
+    requirements: ['west'],
     beenHere: [],
-    gatewayFns: [function() {
-        addInstruction('The fridge opens...')
-    }]
+    gatewayFns: new Map([[[['look in', 'open'], ['fridge', 'refrigerator']], function(location) {
+        addInstruction('The fridge opens, inside you find a lone metal key, [MORE DETAIL]...');
+        pockets.push({
+            names: ['key'],
+            text: 'metal key'
+        });
+        location.requirements.splice(location.requirements.indexOf('west'), 1);
+    }]])
 },
  {
     plainText: '16',
@@ -526,23 +537,27 @@ const inputTester = function(input, location) {
         if (checked) return;
         checkPockets();
     } else {
-        const [verb, objirection] = strInput.split(" ")
-        location.gatewayFns.forEach((value, key, map) => {
-            // console.log(key);
-            // console.log(key[0].includes(verb));
-            // console.log(key[1].includes(objirection));
-            if ((key[0].includes(verb)) && (key[1].includes(objirection))) { 
-                value(); // Calls gateway function
-                didSomething = true;
-                return
-            } 
-            
-        });
+        const [verb, objirection] = strInput.split(" ");
+        if (!(location.gatewayFns.size === 0)) {
+            location.gatewayFns.forEach((value, key, map) => {
+                // console.log(key);
+                // console.log(key[0].includes(verb));
+                // console.log(key[1].includes(objirection));
+                if ((key[0].includes(verb)) && (key[1].includes(objirection))) { 
+                    value(location); // Calls gateway function
+                    didSomething = true;
+                    location.gatewayFns.delete(key)
+                    return
+                } 
+            });
+        }
+
         // check for direction
         if (!didSomething) {
         if (location.answers.at(-1)[0].some((verb) => strInput.startsWith(verb))) {
             if (location.answers.at(-1)[1].some((objirection) => strInput.endsWith(objirection))) {
                 // GATEWAYS
+                console.log(location.requirements);
                 if ((!(location.requirements.some((req)=> strInput.endsWith(req)))) || pockets.some((item) => item['names'].some((itemName) => strInput.endsWith(itemName)))) {
  ///// if the item/direction isn't "locked" in the requirements arr AND/OR said item/direction is in the players pockets then...
                     // !!! CONTINUE TO NEXT ROOM !!!
