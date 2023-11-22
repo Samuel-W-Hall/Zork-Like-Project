@@ -42,8 +42,7 @@ directionMap.set('w', [0, -1]);
 
 /*
 TESTING AREA
-
-
+*change to test GitHub pages*
 
 
 
