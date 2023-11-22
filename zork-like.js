@@ -1,5 +1,7 @@
 "use strict";
 
+console.log([1, 5, 3]);
+console.log([1, 5, 3].sort((a,b) => a-b))
 // Element grabbing -------------------------------------
 const title = document.querySelector('h1');
 const startButton = document.querySelector('button');
@@ -19,10 +21,10 @@ let pockets = [
         names: ['keycard', 'card'],
         text: 'blank yellow keycard'
     }, 
-    { 
-        names: ['donut'],
-        text: 'sugar strand donut'
-    },
+    // { 
+    //     names: ['donut'],
+    //     text: 'sugar strand donut'
+    // },
     {
         names: ['compass'],
         text: 'compass'
@@ -548,7 +550,7 @@ const inputTester = function(input, location) {
         if (location.answers.at(-1)[0].some((verb) => strInput.startsWith(verb))) {
             if (location.answers.at(-1)[1].some((objirection) => strInput.endsWith(objirection))) {
                 // GATEWAYS
-                console.log(location.requirements);
+                // console.log(location.requirements);
                 if ((!(location.requirements.some((req)=> strInput.endsWith(req)))) || pockets.some((item) => item['names'].some((itemName) => strInput.endsWith(itemName)))) {
  ///// if the item/direction isn't "locked" in the requirements arr AND/OR said item/direction is in the players pockets then...
                     // !!! CONTINUE TO NEXT ROOM !!!
@@ -560,8 +562,10 @@ const inputTester = function(input, location) {
                         let index = location.directions[0][0];
                         let num = location.directions[0][1];
                         currentLocation[index] += num 
+                        // console.log(currentLocation)
                     } else { // direction must be a choice
                         const coords = directionMap.get(strInput.toLowerCase().split(" ").slice(-1)[0][0]);
+                        // console.log(coords);
                         currentLocation[coords[0]] += coords[1];
                     }
                     console.log(currentLocation);
