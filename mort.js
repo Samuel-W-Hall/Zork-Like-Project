@@ -674,7 +674,8 @@ startButton.addEventListener('mouseenter', emphasizeTitle);
 startButton.addEventListener('mouseleave', defaultTitle);
 
 // Start game
-startButton.addEventListener('click', beginning);
+startButton.addEventListener('mousedown', beginning);
+// startButton.addEventListener('touchstart', beginning);
 
 
 
