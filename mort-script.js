@@ -1,7 +1,7 @@
 "use strict";
 
-console.log([1, 5, 3]);
-console.log([1, 5, 3].sort((a,b) => a-b))
+// console.log([1, 5, 3]);
+// console.log([1, 5, 3].sort((a,b) => a-b))
 // Element grabbing -------------------------------------
 const title = document.querySelector('h1');
 const startButton = document.querySelector('button');
@@ -379,7 +379,7 @@ const mapArr = xCoords.flatMap(function(x) {
 
 const allGameTextMap = new Map(mapArr.map((coords, index) => [String(coords), allGameText[index]]));
 
-console.log(allGameTextMap);
+// console.log(allGameTextMap);
 
 const find = (property) => allGameTextMap.get(String(currentLocation))[property];
 
@@ -567,7 +567,7 @@ const inputTester = function(input, location) {
                         // console.log(coords);
                         currentLocation[coords[0]] += coords[1];
                     }
-                    console.log(currentLocation);
+                    // console.log(currentLocation);
                     setTimeout(function() {
                         // remove all added instructions
                         document.querySelectorAll('.added').forEach((el) => el.remove())
