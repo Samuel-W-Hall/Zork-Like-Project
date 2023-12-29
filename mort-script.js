@@ -652,7 +652,7 @@ const setGameText = function() {
 
 // hide title screen & show game intro text
 const beginning = function(e) {
-    startScreen.style.opacity = '0%';
+    startScreen.style.opacity = 0;
     // Set gametext
     setGameText();
     // console.log(hintElement.textContent);
