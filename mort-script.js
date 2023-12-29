@@ -13,10 +13,10 @@ const hintElement = document.querySelector('.hint-text');
 
 // Initial values
 const start = [0, 0];
-var currentLocation = start;
-var playerInput = document.querySelector('.playerInput');
-var checked = false;
-var pockets = [
+let currentLocation = start;
+let playerInput = document.querySelector('.playerInput');
+let checked = false;
+let pockets = [
     {
         names: ['keycard', 'card'],
         text: 'blank yellow keycard'
@@ -42,7 +42,7 @@ directionMap.set('w', [0, -1]);
 
 /*
 TESTING AREA
-*change to test GitHub pages*
+*changes to test ios mobile compatibility*
 
 
 
@@ -361,7 +361,7 @@ const allGameText = [{
 // Array creator function
 const arrayCreator = function(xStart, xEnd) {
     const xCoords = [];
-    for (var i=xStart; i<=xEnd; i++) {
+    for (let i=xStart; i<=xEnd; i++) {
         xCoords.push(i);
     }
     return xCoords;
@@ -371,7 +371,7 @@ const xCoords = arrayCreator(-2, 2); // (5x5) CHANGE THIS IF NEEDED BIGGER MAP/G
 
 const mapArr = xCoords.flatMap(function(x) {
     const xArr = [];
-    for (var j=0; j<5; j++) {
+    for (let j=0; j<5; j++) {
         xArr.push([x, xCoords[j]]);
     }
     return xArr
@@ -393,7 +393,7 @@ const checkPockets = function() {
     const firstInvText = document.querySelector('.firstInvText');
     addInvEl(`${pockets[0]['text']}`, 'span', 'invItem', firstInvText);
     if (pockets.length > 1) {
-        for (var i=1; i<pockets.length-1; i++) {
+        for (let i=1; i<pockets.length-1; i++) {
             addInvEl(`, a `, 'span', 'invText', firstInvText);
             addInvEl(`${pockets[i]['text']}`, 'span', 'invItem', firstInvText);
         };
@@ -432,8 +432,8 @@ const pocketsSynonyms = ['check pockets', 'check pocket', 'look in pockets', 'lo
 //                             [...allText.children].forEach((el) => el.style.opacity = 0);
 //                             // if there is only one direction choice
 //                             if (directions.length === 1) {
-//                                 var index = directions[0][0];
-//                                 var num = directions[0][1];
+//                                 let index = directions[0][0];
+//                                 let num = directions[0][1];
 //                                 currentLocation[index] += num 
 //                             } else { // direction must be a choice
 //                                 const coords = directionMap.get(splitInput[1].slice(0,1).toLowerCase());
@@ -443,7 +443,7 @@ const pocketsSynonyms = ['check pockets', 'check pocket', 'look in pockets', 'lo
 //                             setTimeout(function() {
 //                                 // remove all added instructions
 //                                 document.querySelectorAll('.added').forEach((el) => el.remove())
-//                                 var timesBeenHere = find('beenHere').length;
+//                                 let timesBeenHere = find('beenHere').length;
 //                                 if (timesBeenHere === 0) {
 //                                     addTransitionText();
 //                                     find('beenHere').push('✅')
@@ -489,8 +489,8 @@ const pocketsSynonyms = ['check pockets', 'check pocket', 'look in pockets', 'lo
 //                             [...allText.children].forEach((el) => el.style.opacity = 0);
 //                             // if there is only one direction choice
 //                             if (directions.length === 1) {
-//                                 var index = directions[0][0];
-//                                 var num = directions[0][1];
+//                                 let index = directions[0][0];
+//                                 let num = directions[0][1];
 //                                 currentLocation[index] += num 
 //                             } else { // direction must be a choice
 //                                 const coords = directionMap.get(strInput.toLowerCase().split(" ").slice(-1)[0][0]);
@@ -500,7 +500,7 @@ const pocketsSynonyms = ['check pockets', 'check pocket', 'look in pockets', 'lo
 //                             setTimeout(function() {
 //                                 // remove all added instructions
 //                                 document.querySelectorAll('.added').forEach((el) => el.remove())
-//                                 var timesBeenHere = find('beenHere').length;
+//                                 let timesBeenHere = find('beenHere').length;
 //                                 setGameText();
 //                                 if (timesBeenHere === 0) {
 //                                     addTransitionText();
@@ -522,7 +522,7 @@ const pocketsSynonyms = ['check pockets', 'check pocket', 'look in pockets', 'lo
 
 // Reworked for just 2 arguments (doesn't work for 3+ word inputs)
 const inputTester = function(input, location) {
-    var didSomething = false;
+    let didSomething = false;
     // console.log(location);
     const strInput = String(input).toLowerCase();
     if ((pocketsSynonyms.includes(input.toLowerCase().trim()))) {
@@ -558,8 +558,8 @@ const inputTester = function(input, location) {
                     [...allText.children].forEach((el) => el.style.opacity = 0);
                     // if there is only one direction choice
                     if (location.directions.length === 1) {
-                        var index = location.directions[0][0];
-                        var num = location.directions[0][1];
+                        let index = location.directions[0][0];
+                        let num = location.directions[0][1];
                         currentLocation[index] += num 
                         // console.log(currentLocation)
                     } else { // direction must be a choice
@@ -571,7 +571,7 @@ const inputTester = function(input, location) {
                     setTimeout(function() {
                         // remove all added instructions
                         document.querySelectorAll('.added').forEach((el) => el.remove())
-                        var timesBeenHere = location.beenHere.length;
+                        let timesBeenHere = location.beenHere.length;
                         setGameText();
                         if (timesBeenHere === 0) {
                             addTransitionText();
@@ -680,7 +680,7 @@ startButton.addEventListener('click', beginning);
 
 
 // User input
-var currentInput;
+let currentInput;
 document.addEventListener('keypress', (e) => {
     const name = e.key;
     // const code = e.code;
