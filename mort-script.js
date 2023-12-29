@@ -673,6 +673,8 @@ function runOnStart() {
 
 
     // Event Listeners ---------------------------------------
+    
+    // ONLY WORKS ON DESKTOP, THIS BREAKS THE PAGE ON MOBILE BROWSERS
     // startButton.addEventListener('mouseenter', emphasizeTitle);
     // startButton.addEventListener('mouseleave', defaultTitle);
 
