@@ -17,7 +17,7 @@ function runOnStart() {
     // Initial values
     const start = [0, 0];
     let currentLocation = start;
-    let playerInput = document.querySelector('.playerInput');
+    let playerInput = document.querySelector('#playerInput');
     let checked = false;
     let pockets = [
         {
@@ -654,7 +654,7 @@ function runOnStart() {
     }
 
     // hide title screen & show game intro text
-    const beginning = function(e) {
+    const beginning = function() {
         startScreen.style.opacity = 0;
         // Set gametext
         setGameText();

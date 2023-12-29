@@ -76,7 +76,7 @@ button:hover {
   /* white-space: pre; */
 }
 
-.playerInput {
+#playerInput {
   font-size: 30px;
   text-align: center;
   font-family: 'Source Code Pro', monospace;
