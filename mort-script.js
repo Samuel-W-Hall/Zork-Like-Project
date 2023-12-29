@@ -1,4 +1,4 @@
-"use strict";
+// "use strict";
 
 // console.log([1, 5, 3]);
 // console.log([1, 5, 3].sort((a,b) => a-b))
