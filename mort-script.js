@@ -673,8 +673,8 @@ function runOnStart() {
 
 
     // Event Listeners ---------------------------------------
-    startButton.addEventListener('mouseenter', emphasizeTitle);
-    startButton.addEventListener('mouseleave', defaultTitle);
+    // startButton.addEventListener('mouseenter', emphasizeTitle);
+    // startButton.addEventListener('mouseleave', defaultTitle);
 
     // Start game
     startButton.addEventListener('click', beginning);
