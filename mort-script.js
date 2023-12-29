@@ -635,7 +635,7 @@ const makeGameTextVisible = function() { // game (story) text appears last
 // Title grow/shrink effect
 const emphasizeTitle = function (e) {
     title.style.fontSize = '80px';
-    title.style.letterSpacing = '0.075cm'
+    title.style.letterSpacing = '6px'
 };
 
 const defaultTitle = function(e) {
