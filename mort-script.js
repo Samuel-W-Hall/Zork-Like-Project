@@ -682,9 +682,9 @@ startButton.addEventListener('click', beginning);
 // User input
 let currentInput;
 document.addEventListener('keypress', (e) => {
-    const name = e.key;
+    const keyName = e.key;
     // const code = e.code;
-    if (name === "Enter") {
+    if (keyName === "Enter") {
         e.preventDefault();
         currentInput = playerInput.value;
         // inputTester(currentInput, find('answers')[0], find('directions'));
