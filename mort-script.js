@@ -381,7 +381,7 @@ const allGameTextMap = new Map(mapArr.map((coords, index) => [String(coords), al
 
 // console.log(allGameTextMap);
 
-const find = (property) => allGameTextMap.get(String(currentLocation))[property];
+const findProperty = (property) => allGameTextMap.get(String(currentLocation))[property];
 
 
 // Pockets
@@ -616,7 +616,7 @@ const addTransitionText = function() {
     const newH2 = document.createElement('h2');
     newH2.classList.add('transition');
     newH2.classList.add('added');
-    const addedText = document.createTextNode(find('transitionText'));
+    const addedText = document.createTextNode(findProperty('transitionText'));
     newH2.appendChild(addedText);
     allText.insertAdjacentElement("afterbegin", newH2);
     const transitionText = document.querySelector('.transition');
@@ -645,8 +645,8 @@ const defaultTitle = function(e) {
 
 
 const setGameText = function() {
-    gameTextPlain.textContent = find('plainText');
-    hintElement.textContent = find('hint');
+    gameTextPlain.textContent = findProperty('plainText');
+    hintElement.textContent = findProperty('hint');
     allText.style.opacity = 100;
 }
 
