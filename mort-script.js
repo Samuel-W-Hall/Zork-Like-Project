@@ -11,8 +11,6 @@ function runOnStart() {
     const startScreen = document.querySelector('#start-screen');
     const gameText = document.querySelector('.game-text');
     const allText = document.querySelector('.text');
-    const gameTextPlain = document.querySelector('.plain-text');
-    const hintElement = document.querySelector('.hint-text');
     const inputForm = document.querySelector('.input-form');
 
     // Initial values
@@ -64,7 +62,7 @@ function runOnStart() {
 
     // BIG Array of ALL locations
     const allGameText = [{
-        html: `<span class="plain-text">1</span>`,
+        html: `<span class="location-text">1</span>`,
         transitionText: '',     // LOADS IN FIRST ONLY IF NOT BEEN HERE YET
         answers: [],            // (possibly only needs to be movement ans)
         findableObjects: [],    // TODO: get rid of????
@@ -74,7 +72,7 @@ function runOnStart() {
         gatewayFns: []          // MAP, more possibilities here?
     },
         {
-            html: `<span class="plain-text">2</span>`,
+            html: `<span class="location-text">2</span>`,
         transitionText: '',
         answers: [],
         findableObjects: [],
@@ -84,7 +82,7 @@ function runOnStart() {
         gatewayFns: []
     },
     {
-        html: `<span class="plain-text">3</span>`,
+        html: `<span class="location-text">3</span>`,
         transitionText: '',
         answers: [],
         findableObjects: [],
@@ -94,7 +92,7 @@ function runOnStart() {
         gatewayFns: []
     },
     {
-        html: `<span class="plain-text">4</span>`,
+        html: `<span class="location-text">4</span>`,
         transitionText: '',
         answers: [],
         findableObjects: [],
@@ -104,7 +102,7 @@ function runOnStart() {
         gatewayFns: []
     },
     {
-        html: `<span class="plain-text">5</span>`,
+        html: `<span class="location-text">5</span>`,
         transitionText: '',
         answers: [],
         findableObjects: [],
@@ -114,7 +112,7 @@ function runOnStart() {
         gatewayFns: []
     },
     {
-        html: `<span class="plain-text">6</span>`,
+        html: `<span class="location-text">6</span>`,
         transitionText: '',
         answers: [],
         findableObjects: [],
@@ -124,7 +122,7 @@ function runOnStart() {
         gatewayFns: []
     },
     {
-        html: `<span class="plain-text">7</span>`,
+        html: `<span class="location-text">7</span>`,
         transitionText: '',
         answers: [],
         findableObjects: [],
@@ -134,7 +132,7 @@ function runOnStart() {
         gatewayFns: []
     },
     {
-        html: `<span class="plain-text">8</span>`,
+        html: `<span class="location-text">8</span>`,
         transitionText: '',
         answers: [],
         findableObjects: [],
@@ -144,7 +142,7 @@ function runOnStart() {
         gatewayFns: []
     },
     {
-        html: `<span class="plain-text">9</span>`,
+        html: `<span class="location-text">9</span>`,
         transitionText: '',
         answers: [],
         findableObjects: [],
@@ -154,7 +152,7 @@ function runOnStart() {
         gatewayFns: []
     },
     {
-        html: '<span class="plain-text">This is normal text with </span><span class="hint-text">Inserted Hint Text.</span><span class="plain-text"> Hope this works.</span>',
+        html: '<span class="location-text">This is normal text with <span class="hint-text">Inserted Hint Text.</span> Hope this works.</span>',
         transitionText: '',
         answers: [],
         findableObjects: [],
@@ -164,7 +162,7 @@ function runOnStart() {
         gatewayFns: []
     },
     {
-        html: `<span class="plain-text">11</span>`,
+        html: `<span class="location-text">11</span>`,
         transitionText: '',
         answers: [],
         findableObjects: [],
@@ -174,7 +172,7 @@ function runOnStart() {
         gatewayFns: []
     },
     {
-        html: `<span class="plain-text">12</span>`,
+        html: `<span class="location-text">12</span>`,
         transitionText: '',
         answers: [],
         findableObjects: [],
@@ -184,7 +182,7 @@ function runOnStart() {
         gatewayFns: []
     },
     {
-        html: `<span class="plain-text">You wake up in an empty office. You are lying on a long conference table. You feel weak. But you </span><span class="hint-text">tell yourself to get up.</span>`,
+        html: `<span class="location-text">You wake up in an empty office. You are lying on a long conference table. You feel weak. But you <span class="hint-text">tell yourself to get up.</span></span>`,
         transitionText: '',
         answers: [[['get', 'wake'], ['up']]],
         findableObjects: [],
@@ -194,7 +192,7 @@ function runOnStart() {
         gatewayFns: []
     },
     {
-        html: `<span class="plain-text">The only thing in here besides the table and chairs is a painting of [INSERT TEXT HERE]. To your right there is a reinforced metal door with a keycard lock. Instinctively you </span><span class="hint-text">check your pockets...</span>`,
+        html: `<span class="location-text">The only thing in here besides the table and chairs is a painting of [INSERT TEXT HERE]. To your right there is a reinforced metal door with a keycard lock. Instinctively you <span class="hint-text">check your pockets...</span></span>`,
         transitionText: 'You drag yourself off the table and look around the room',
         answers: [[['swipe', 'use'], ['keycard', 'card']]],
         findableObjects: [],
@@ -210,7 +208,7 @@ function runOnStart() {
         }]])
     },
     {
-        html: `<span class="plain-text">In the cafeteria you notice a clean dining table and a </span><span class="hint-text">gigantic fridge.</span><span class="plain-text"> You can go west, following signs to "Bathrooms" or east, towards "Maintenance"</span>`,
+        html: `<span class="location-text">In the cafeteria you notice a clean dining table and a <span class="hint-text">gigantic fridge.</span> You can go west, following signs to "Bathrooms" or east, towards "Maintenance"</span>`,
         transitionText: 'You open the door and walk into the cafeteria',
         answers: [[['go'], ['east', 'west']]],
         findableObjects: [],
@@ -231,7 +229,7 @@ function runOnStart() {
         }]])
     },
     {
-        html: `<span class="plain-text">16</span>`,
+        html: `<span class="location-text">16</span>`,
         transitionText: '',
         answers: [],
         findableObjects: [],
@@ -241,7 +239,7 @@ function runOnStart() {
         gatewayFns: []
     },
     {
-        html: `<span class="plain-text">17</span>`,
+        html: `<span class="location-text">17</span>`,
         transitionText: '',
         answers: [],
         findableObjects: [],
@@ -251,7 +249,7 @@ function runOnStart() {
         gatewayFns: []
     },
     {
-        html: `<span class="plain-text">18</span>`,
+        html: `<span class="location-text">18</span>`,
         transitionText: '',
         answers: [[['go'], ['north']]],
         findableObjects: [],
@@ -261,7 +259,7 @@ function runOnStart() {
         gatewayFns: []
     },
     {
-        html: `<span class="plain-text">[MORE DETAIL NEEDED] You find youself in a long corridor. You can go </span><span class="hint-text">North, or South.</span>`,
+        html: `<span class="location-text">[MORE DETAIL NEEDED] You find youself in a long corridor. You can go <span class="hint-text">North, or South.</span></span>`,
         transitionText: 'You swipe the yellow keycard, the door clanks open.',
         answers: [[['go', 'walk'], ['north', 'south']]],
         findableObjects: [],
@@ -272,7 +270,7 @@ function runOnStart() {
     },
 
     {
-        html: `<span class="plain-text">You reach the end of the corridor. There is a blue door to the west with a sign that reads "Cafeteria" and a red door to the east with a sign that reads "Maintenance". Or you can go South back down the corridor</span>`,
+        html: `<span class="location-text">You reach the end of the corridor. There is a blue door to the west with a sign that reads "Cafeteria" and a red door to the east with a sign that reads "Maintenance". Or you can go South back down the corridor</span>`,
         transitionText: '',
         answers: [[['go'], ['south', 'west', 'east']]],
         findableObjects: [],
@@ -282,7 +280,7 @@ function runOnStart() {
         gatewayFns: []
     },
     {
-        html: `<span class="plain-text">21</span>`,
+        html: `<span class="location-text">21</span>`,
         transitionText: '',
         answers: [],
         findableObjects: [],
@@ -292,7 +290,7 @@ function runOnStart() {
         gatewayFns: []
     },
     {
-        html: `<span class="plain-text">22</span>`,
+        html: `<span class="location-text">22</span>`,
         transitionText: '',
         answers: [],
         findableObjects: [],
@@ -302,7 +300,7 @@ function runOnStart() {
         gatewayFns: []
     },
     {
-        html: `<span class="plain-text">23</span>`,
+        html: `<span class="location-text">23</span>`,
         transitionText: '',
         answers: [],
         findableObjects: [],
@@ -312,7 +310,7 @@ function runOnStart() {
         gatewayFns: []
     },
     {
-        html: `<span class="plain-text">24</span>`,
+        html: `<span class="location-text">24</span>`,
         transitionText: '',
         answers: [],
         findableObjects: [],
@@ -322,7 +320,7 @@ function runOnStart() {
         gatewayFns: []
     },
     {
-        html: `<span class="plain-text">You are in the maintenance cupboard. There is nothing of interest in here. </span><span class="hint-text">Absolutely nothing</span>`,
+        html: `<span class="location-text">You are in the maintenance cupboard. There is nothing of interest in here. <span class="hint-text">Absolutely nothing</span></span>`,
         transitionText: '',
         answers: [[['go'], ['west']]],
         findableObjects: [],
