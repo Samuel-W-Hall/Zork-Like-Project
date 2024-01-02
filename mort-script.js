@@ -13,6 +13,7 @@ function runOnStart() {
     const allText = document.querySelector('.text');
     const gameTextPlain = document.querySelector('.plain-text');
     const hintElement = document.querySelector('.hint-text');
+    const inputForm = document.querySelector('.input-form');
 
     // Initial values
     const start = [0, 0];
@@ -238,7 +239,7 @@ function runOnStart() {
                 text: 'metal key'
             });
             if (checked === true) {
-                document.querySelector('.firstInvText').remove();
+                document.querySelector('.invText').remove();
                 checked = false;
             }
             location.requirements.splice(location.requirements.indexOf('west'), 1);
@@ -391,17 +392,17 @@ function runOnStart() {
 
     const checkPockets = function() {
         const pocketsMsg = (pockets.length === 0) ? `Your pockets are empty` : `You check your pockets and find a `;
-        // MIGHT NEED SOMETHING HERE when checking pockets AGAIN after picking something up (possibly doc.querSel('.firstInvText').textContent = '' before its added again)
-        addInvEl(pocketsMsg, 'div', 'firstInvText', gameText);
-        const firstInvText = document.querySelector('.firstInvText');
-        addInvEl(`${pockets[0]['text']}`, 'span', 'invItem', firstInvText);
+        // MIGHT NEED SOMETHING HERE when checking pockets AGAIN after picking something up (possibly doc.querSel('.invText').textContent = '' before its added again)
+        addInvEl(pocketsMsg, 'div', 'invText', gameText);
+        const invText = document.querySelector('.invText');
+        addInvEl(`${pockets[0]['text']}`, 'span', 'invItem', invText);
         if (pockets.length > 1) {
             for (let i=1; i<pockets.length-1; i++) {
-                addInvEl(`, a `, 'span', 'invText', firstInvText);
-                addInvEl(`${pockets[i]['text']}`, 'span', 'invItem', firstInvText);
+                addInvEl(`, a `, 'span', 'invWords', invText);
+                addInvEl(`${pockets[i]['text']}`, 'span', 'invItem', invText);
             };
-        addInvEl(` and a `, 'span', 'invText', firstInvText);
-        addInvEl(`${pockets.at(-1)['text']}`, 'span', 'invItem', firstInvText);
+        addInvEl(` and a `, 'span', 'invWords', invText);
+        addInvEl(`${pockets.at(-1)['text']}`, 'span', 'invItem', invText);
         }
         checked = true;
     }
@@ -573,17 +574,18 @@ function runOnStart() {
                         // console.log(currentLocation);
                         setTimeout(function() {
                             // remove all added instructions
-                            document.querySelectorAll('.added').forEach((el) => el.remove())
-                            let timesBeenHere = location.beenHere.length;
+                            document.querySelectorAll('.added').forEach((el) => el.remove());
+                            const newLocation = allGameTextMap.get(String(currentLocation));
                             setGameText();
-                            if (timesBeenHere === 0) {
-                                addTransitionText();
-                                location.beenHere.push('✅');
+                            newLocation.beenHere.push('✅');
+                            let timesBeenHere = findProperty('beenHere').length;
+                            console.log(timesBeenHere);
+                            if (timesBeenHere === 1) {
+                                addTransitionText(findProperty('transitionText'));
                                 setTimeout(function() { // game (story) text appears last
-                                    gameText.style.opacity = 100;
-                                    playerInput.focus();
+                                    makeGameTextVisible();
                                 }, 3000);
-                            } else makeGameTextVisible();
+                            } else makeGameTextVisible(); // Need something to stop transition text showing up again here
                         }, 1500);
                     checked = false;
                 } else addInstruction(`LOCKED BY REQUIREMENTS ARRAY`);
@@ -615,22 +617,25 @@ function runOnStart() {
         parent.insertAdjacentElement("beforeend", newEl);
     }
 
-    const addTransitionText = function() {
-        const newH2 = document.createElement('h2');
-        newH2.classList.add('transition');
-        newH2.classList.add('added');
-        const addedText = document.createTextNode(findProperty('transitionText'));
-        newH2.appendChild(addedText);
-        allText.insertAdjacentElement("afterbegin", newH2);
-        const transitionText = document.querySelector('.transition');
-        transitionText.style.display = 'block';
-        setTimeout(function() {
-            transitionText.style.opacity = 100;
-        }, 1500);
-    }
+    const addTransitionText = function(text) {
+        if (text !== '') {
+            const newH2 = document.createElement('h2');
+            newH2.classList.add('transition');
+            newH2.classList.add('added');
+            const addedText = document.createTextNode(text);
+            newH2.appendChild(addedText);
+            allText.insertAdjacentElement("afterbegin", newH2);
+            const transitionText = document.querySelector('.transition');
+            transitionText.style.display = 'block';
+            setTimeout(function() {
+                transitionText.style.opacity = 100;
+            }, 1500);
+        }
+    }   
 
     const makeGameTextVisible = function() { // game (story) text appears last
         gameText.style.opacity = 100;
+        inputForm.style.opacity = 100;
         playerInput.focus();
     };
 
