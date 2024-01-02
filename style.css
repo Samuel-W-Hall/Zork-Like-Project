@@ -65,6 +65,7 @@ button:hover {
   margin: auto;
   transition-duration: 1.5s;
   vertical-align: middle;
+  max-height: 100vh;
 }
 
 .game-text {
