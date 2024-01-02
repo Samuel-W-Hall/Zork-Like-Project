@@ -64,8 +64,7 @@ function runOnStart() {
 
     // BIG Array of ALL locations
     const allGameText = [{
-        plainText: '1',         // *consider combining these properties
-        hint: '',               // to create new "html" property*
+        html: `<span class="plain-text">1</span>`,
         transitionText: '',     // LOADS IN FIRST ONLY IF NOT BEEN HERE YET
         answers: [],            // (possibly only needs to be movement ans)
         findableObjects: [],    // TODO: get rid of????
@@ -75,8 +74,7 @@ function runOnStart() {
         gatewayFns: []          // MAP, more possibilities here?
     },
         {
-        plainText: '2',
-        hint: '',
+            html: `<span class="plain-text">2</span>`,
         transitionText: '',
         answers: [],
         findableObjects: [],
@@ -86,8 +84,7 @@ function runOnStart() {
         gatewayFns: []
     },
     {
-        plainText: '3',
-        hint: '',
+        html: `<span class="plain-text">3</span>`,
         transitionText: '',
         answers: [],
         findableObjects: [],
@@ -97,8 +94,7 @@ function runOnStart() {
         gatewayFns: []
     },
     {
-        plainText: '4',
-        hint: '',
+        html: `<span class="plain-text">4</span>`,
         transitionText: '',
         answers: [],
         findableObjects: [],
@@ -108,8 +104,7 @@ function runOnStart() {
         gatewayFns: []
     },
     {
-        plainText: '5',
-        hint: '',
+        html: `<span class="plain-text">5</span>`,
         transitionText: '',
         answers: [],
         findableObjects: [],
@@ -119,8 +114,7 @@ function runOnStart() {
         gatewayFns: []
     },
     {
-        plainText: '6',
-        hint: '',
+        html: `<span class="plain-text">6</span>`,
         transitionText: '',
         answers: [],
         findableObjects: [],
@@ -130,8 +124,7 @@ function runOnStart() {
         gatewayFns: []
     },
     {
-        plainText: '7',
-        hint: '',
+        html: `<span class="plain-text">7</span>`,
         transitionText: '',
         answers: [],
         findableObjects: [],
@@ -141,8 +134,7 @@ function runOnStart() {
         gatewayFns: []
     },
     {
-        plainText: '8',
-        hint: '',
+        html: `<span class="plain-text">8</span>`,
         transitionText: '',
         answers: [],
         findableObjects: [],
@@ -152,8 +144,7 @@ function runOnStart() {
         gatewayFns: []
     },
     {
-        plainText: '9',
-        hint: '',
+        html: `<span class="plain-text">9</span>`,
         transitionText: '',
         answers: [],
         findableObjects: [],
@@ -163,8 +154,7 @@ function runOnStart() {
         gatewayFns: []
     },
     {
-        plainText: '10',
-        hint: '',
+        html: '<span class="plain-text">This is normal text with </span><span class="hint-text">Inserted Hint Text.</span><span class="plain-text"> Hope this works.</span>',
         transitionText: '',
         answers: [],
         findableObjects: [],
@@ -174,8 +164,7 @@ function runOnStart() {
         gatewayFns: []
     },
     {
-        plainText: '11',
-        hint: '',
+        html: `<span class="plain-text">11</span>`,
         transitionText: '',
         answers: [],
         findableObjects: [],
@@ -185,8 +174,7 @@ function runOnStart() {
         gatewayFns: []
     },
     {
-        plainText: '12',
-        hint: '',
+        html: `<span class="plain-text">12</span>`,
         transitionText: '',
         answers: [],
         findableObjects: [],
@@ -196,8 +184,7 @@ function runOnStart() {
         gatewayFns: []
     },
     {
-        plainText: `You wake up in an empty office. You are lying on a long conference table. You feel weak. But you `,
-        hint: 'tell yourself to get up.',
+        html: `<span class="plain-text">You wake up in an empty office. You are lying on a long conference table. You feel weak. But you </span><span class="hint-text">tell yourself to get up.</span>`,
         transitionText: '',
         answers: [[['get', 'wake'], ['up']]],
         findableObjects: [],
@@ -207,8 +194,7 @@ function runOnStart() {
         gatewayFns: []
     },
     {
-        plainText: 'The only thing in here besides the table and chairs is a painting of [INSERT TEXT HERE]. To your right there is a reinforced metal door with a keycard lock. Instinctively you ',
-        hint: 'check your pockets...',
+        html: `<span class="plain-text">The only thing in here besides the table and chairs is a painting of [INSERT TEXT HERE]. To your right there is a reinforced metal door with a keycard lock. Instinctively you </span><span class="hint-text">check your pockets...</span>`,
         transitionText: 'You drag yourself off the table and look around the room',
         answers: [[['swipe', 'use'], ['keycard', 'card']]],
         findableObjects: [],
@@ -224,8 +210,7 @@ function runOnStart() {
         }]])
     },
     {
-        plainText: 'In the cafeteria you notice a clean dining table and a gigantic fridge. You can go west, following signs to "Bathrooms" or east, towards "Maintenance".',
-        hint: '',
+        html: `<span class="plain-text">In the cafeteria you notice a clean dining table and a </span><span class="hint-text">gigantic fridge.</span><span class="plain-text"> You can go west, following signs to "Bathrooms" or east, towards "Maintenance"</span>`,
         transitionText: 'You open the door and walk into the cafeteria',
         answers: [[['go'], ['east', 'west']]],
         findableObjects: [],
@@ -246,8 +231,7 @@ function runOnStart() {
         }]])
     },
     {
-        plainText: '16',
-        hint: '',
+        html: `<span class="plain-text">16</span>`,
         transitionText: '',
         answers: [],
         findableObjects: [],
@@ -257,8 +241,7 @@ function runOnStart() {
         gatewayFns: []
     },
     {
-        plainText: '17',
-        hint: '',
+        html: `<span class="plain-text">17</span>`,
         transitionText: '',
         answers: [],
         findableObjects: [],
@@ -268,9 +251,7 @@ function runOnStart() {
         gatewayFns: []
     },
     {
-
-        plainText: '18',
-        hint: '',
+        html: `<span class="plain-text">18</span>`,
         transitionText: '',
         answers: [[['go'], ['north']]],
         findableObjects: [],
@@ -280,8 +261,7 @@ function runOnStart() {
         gatewayFns: []
     },
     {
-        plainText: '[MORE DETAIL NEEDED] You find youself in a long corridor. You can go ',
-        hint: 'North, or South.',
+        html: `<span class="plain-text">[MORE DETAIL NEEDED] You find youself in a long corridor. You can go </span><span class="hint-text">North, or South.</span>`,
         transitionText: 'You swipe the yellow keycard, the door clanks open.',
         answers: [[['go', 'walk'], ['north', 'south']]],
         findableObjects: [],
@@ -292,8 +272,7 @@ function runOnStart() {
     },
 
     {
-        plainText: 'You reach the end of the corridor. There is a blue door to the west with a sign that reads "Cafeteria" and a red door to the east with a sign that reads "Maintenance". Or you can go South back down the corridor',
-        hint: '',
+        html: `<span class="plain-text">You reach the end of the corridor. There is a blue door to the west with a sign that reads "Cafeteria" and a red door to the east with a sign that reads "Maintenance". Or you can go South back down the corridor</span>`,
         transitionText: '',
         answers: [[['go'], ['south', 'west', 'east']]],
         findableObjects: [],
@@ -303,8 +282,7 @@ function runOnStart() {
         gatewayFns: []
     },
     {
-        plainText: '21',
-        hint: '',
+        html: `<span class="plain-text">21</span>`,
         transitionText: '',
         answers: [],
         findableObjects: [],
@@ -314,8 +292,7 @@ function runOnStart() {
         gatewayFns: []
     },
     {
-        plainText: '22',
-        hint: '',
+        html: `<span class="plain-text">22</span>`,
         transitionText: '',
         answers: [],
         findableObjects: [],
@@ -325,8 +302,7 @@ function runOnStart() {
         gatewayFns: []
     },
     {
-        plainText: '23',
-        hint: '',
+        html: `<span class="plain-text">23</span>`,
         transitionText: '',
         answers: [],
         findableObjects: [],
@@ -336,8 +312,7 @@ function runOnStart() {
         gatewayFns: []
     },
     {
-        plainText: '24',
-        hint: '',
+        html: `<span class="plain-text">24</span>`,
         transitionText: '',
         answers: [],
         findableObjects: [],
@@ -347,10 +322,9 @@ function runOnStart() {
         gatewayFns: []
     },
     {
-        plainText: '25',
-        hint: '',
+        html: `<span class="plain-text">You are in the maintenance cupboard. There is nothing of interest in here. </span><span class="hint-text">Absolutely nothing</span>`,
         transitionText: '',
-        answers: [],
+        answers: [[['go'], ['west']]],
         findableObjects: [],
         directions: [],
         requirements: [],
@@ -651,11 +625,16 @@ function runOnStart() {
         title.style.letterSpacing = 'normal'
     };
 
-
+// TODO: Change first two lines of this function to just insert individualised HTML code for each location. That way hints can be anywhere in the text. 
     const setGameText = function() {
-        gameTextPlain.textContent = findProperty('plainText');
-        hintElement.textContent = findProperty('hint');
-        allText.style.opacity = 100;
+        if (findProperty('html') != null) {
+            gameText.innerHTML = findProperty('html');
+        }
+        // else {
+        //     gameTextPlain.textContent = findProperty('plainText');
+        //     hintElement.textContent = findProperty('hint');
+        //     allText.style.opacity = 100;
+        // }
     }
 
     // hide title screen & show game intro text
